@@ -1,6 +1,6 @@
 // PlaylistDisplay.js - This component will display the playlists based on the search
 import React from 'react';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 const PlaylistDisplay = ({ playlists, isVisible }) => {
   if (!isVisible) {
