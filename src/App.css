@@ -80,3 +80,25 @@ input:focus {
   outline: 1px solid #ccc;
   border: 1px solid #ccc;
 }
+
+.card-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.card-title {
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  border: none;
+  background-color: #343a40; /* Dark background color */
+  color: white;
+  margin-bottom: 1rem;
+}
