@@ -6,7 +6,7 @@ import MusicApp from './MusicApp';
 
 const base_uri = 'http://localhost:3000';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
-const redirectUrl = `${base_uri}`;
+const redirectUrl = `https://github.com/TheWalkingShane/backend_spotify/issues`;
 const scope = 'user-read-private user-read-email';
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
@@ -46,7 +46,7 @@ async function redirectSpotifyOAuth() {
 }
 
 function App() {
-	// redirectSpotifyOAuth();
+	// redirectSpotifyOAuth(); DO NOT UNCOMMENT
 	// console.log(spotify_api_client);
 
 	return (
