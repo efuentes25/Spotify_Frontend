@@ -8,6 +8,7 @@
     "@mui/base": "^5.0.0-alpha.73",
     "@mui/material": "^5.5.2",
     "@mui/styled-engine-sc": "^5.5.2",
+    "dotenv": "^16.3.1",
     "js-cookie": "^3.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.9.1",
