@@ -4,9 +4,9 @@ import PlaylistDisplay from './components/PlaylistDisplay';
 import SearchBar from './components/SearchBar';
 import MusicApp from './MusicApp';
 
-const base_uri = 'http://localhost:8080';
+const base_uri = 'http://localhost:3000';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
-const redirectUrl = `eg:${base_uri}`;
+const redirectUrl = `${base_uri}`;
 const scope = 'user-read-private user-read-email';
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
@@ -34,7 +34,7 @@ async function redirectSpotifyOAuth() {
 	const auth_uri = new URL(authorizationEndpoint);
 	const param = {
 		response_type: 'code',
-		client_id: process.env.REACT_APP_SPOTIFY_API_CLIENT_ID,
+		client_id: spotify_api_client,
 		scope: scope,
 		code_challenge_method: 'S256',
 		code_challenge: code_challenge_base64,
@@ -46,7 +46,8 @@ async function redirectSpotifyOAuth() {
 }
 
 function App() {
-	redirectSpotifyOAuth();
+	// redirectSpotifyOAuth();
+	// console.log(spotify_api_client);
 
 	return (
 		<div>
