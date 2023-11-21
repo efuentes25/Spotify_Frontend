@@ -14,6 +14,10 @@ function App() {
     console.log(`Login with ${username} and ${password}`);
   };
 
+  const loginToSpotify = () => {
+    console.log("Redirect to spotify");
+  };
+
   return (
     <div className="container-fluid">
       <div className="row justify-content-center align-items-center vh-100">
@@ -55,10 +59,20 @@ function App() {
                 <div className="text-center">
                   <button
                     type="button"
-                    className="btn btn-success"
+                    className="btn btn-primary"
                     onClick={handleLogin}
                   >
                     Login
+                  </button>
+                </div>
+                <div className='text-center my-2'><h6>Or</h6></div>
+                <div className="text-center">
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={loginToSpotify}
+                  >
+                    Login w/ Spotify
                   </button>
                 </div>
               </form>
