@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import PlaylistDisplay from './components/PlaylistDisplay';
 import SearchBar from './components/SearchBar';
 import MusicApp from './MusicApp';
+import Login from './components/Login';
 
 const base_uri = 'http://localhost:3000';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
@@ -51,7 +52,8 @@ function App() {
 
 	return (
 		<div>
-			<MusicApp />
+			{/* <MusicApp /> */}
+			<Login/>
 		</div>
 	);
 }
