@@ -21,7 +21,7 @@ const userTokens = {
 	// todo setters for above
 };
 
-async function redirectSpotifyOAuth() {
+export async function redirectSpotifyOAuth() {
 	const string_pattern = process.env.REACT_APP_CODE_VERIFIER;
 	const hashed_values = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(string_pattern));
 
@@ -47,8 +47,6 @@ async function redirectSpotifyOAuth() {
 }
 
 function App() {
-	// redirectSpotifyOAuth(); DO NOT UNCOMMENT
-	// console.log(spotify_api_client);
 
 	return (
 		<div>
