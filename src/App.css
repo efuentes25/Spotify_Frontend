@@ -98,7 +98,12 @@ input:focus {
 
 .form-control {
   border: none;
-  background-color: #343a40; /* Dark background color */
+  background-color: #343a40; 
   color: white;
   margin-bottom: 1rem;
+}
+
+.app-nav .dropdown-item:hover {
+  background-color: #13c313;
+  color: #ffffff;
 }

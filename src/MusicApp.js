@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import PlaylistDisplay from './components/PlaylistDisplay';
+import Navbar from './components/Nav'
 
 const MusicApp = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -20,10 +21,13 @@ const MusicApp = () => {
   };
 
   return (
-    <div className="text-center p-4"> {/* Center the content */}
-      <h1>Music Playlist Search</h1>
-      <SearchBar onSearch={searchPlaylists} />
-      <PlaylistDisplay playlists={searchResults} isVisible={isPlaylistVisible} />
+    <div>
+      <Navbar/>
+      <div className="text-center p-4"> {/* Center the content */}
+        <h1>Music Playlist Search</h1>
+        <SearchBar onSearch={searchPlaylists} />
+        <PlaylistDisplay playlists={searchResults} isVisible={isPlaylistVisible} />
+      </div>
     </div>
   );
 };
