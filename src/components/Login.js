@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Nav'
+import { redirectSpotifyOAuth } from '../App'
 
 
 function Login() {
@@ -20,6 +21,7 @@ function Login() {
   };
 
   const loginToSpotify = () => {
+    redirectSpotifyOAuth()
     console.log("Redirect to spotify");
   };
 
