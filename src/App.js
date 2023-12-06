@@ -4,6 +4,8 @@ import PlaylistDisplay from './components/PlaylistDisplay';
 import SearchBar from './components/SearchBar';
 import MusicApp from './MusicApp';
 import Login from './components/Login'
+import Play from './components/Play'
+import Game from './components/Game'
 
 const base_uri = 'http://localhost:3000';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
@@ -55,6 +57,8 @@ function App() {
 					<Switch>
 					<Route exact path="/" component={MusicApp} />
 					<Route path="/login" component={Login} />
+					<Route path="/play" component={Play} />
+					<Route path="/game" component={Game} />
 					<Route render={ () => <h1>Page not found</h1>} />
 					</Switch>
 				</div>
