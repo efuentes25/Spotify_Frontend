@@ -59,6 +59,8 @@ function App() {
 					<Route path="/login" component={Login} />
 					<Route path="/play" component={Play} />
 					<Route path="/game" component={Game} />
+					<Route path="/create" component={Play} />
+					<Route path="/search" component={Game} />
 					<Route render={ () => <h1>Page not found</h1>} />
 					</Switch>
 				</div>

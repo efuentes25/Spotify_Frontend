@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from './Nav'
-import { redirectSpotifyOAuth } from '../App'
-
+import Navbar from './Nav';
+import { redirectSpotifyOAuth } from '../App';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -20,15 +19,20 @@ function Login() {
     console.log(`Login with ${username} and ${password}`);
   };
 
+  const handleRegister = () => {
+    // You can add registration logic here
+    console.log(`Register with ${username} and ${password}`);
+  };
+
   const loginToSpotify = () => {
-    redirectSpotifyOAuth()
-    console.log("Redirect to spotify");
+    redirectSpotifyOAuth();
+    console.log("Redirect to Spotify");
   };
 
   return (
     <div>
       <Navbar />
-    
+
       <div className="container-fluid">
         <div className="row justify-content-center align-items-center vh-100">
           <div className="col-md-5">
@@ -38,6 +42,7 @@ function Login() {
               </div>
               <div className="card-body">
                 <form>
+                  {/* Username input */}
                   <div className="mb-4">
                     <label htmlFor="username" className="form-label">
                       Username
@@ -52,6 +57,8 @@ function Login() {
                       style={inputStyle}
                     />
                   </div>
+
+                  {/* Password input */}
                   <div className="mb-4">
                     <label htmlFor="password" className="form-label">
                       Password
@@ -66,6 +73,8 @@ function Login() {
                       style={inputStyle}
                     />
                   </div>
+
+                  {/* Login button */}
                   <div className="text-center">
                     <button
                       type="button"
@@ -75,7 +84,11 @@ function Login() {
                       Login
                     </button>
                   </div>
+
+                  {/* Or divider */}
                   <div className='text-center my-2'><h6>Or</h6></div>
+
+                  {/* Spotify login button */}
                   <div className="text-center">
                     <button
                       type="button"
@@ -83,6 +96,17 @@ function Login() {
                       onClick={loginToSpotify}
                     >
                       Login w/ Spotify
+                    </button>
+                  </div>
+
+                  {/* Register button */}
+                  <div className="text-center mt-3">
+                    <button
+                      type="button"
+                      className="btn btn-info"
+                      onClick={handleRegister}
+                    >
+                      Register
                     </button>
                   </div>
                 </form>

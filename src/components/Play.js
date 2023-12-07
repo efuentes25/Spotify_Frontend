@@ -18,8 +18,8 @@ function Play() {
     <div>
       <Navbar />
 
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '90vh' }}>
-        <Container className='bg-dark py-5 text-light'>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '90vh'}}>
+        <Container className='bg-dark py-5 text-light' style={{borderRadius: '20px'}}>
           <Row className="justify-content-center">
             <Col md={8} className="text-center">
               <h1>Get quizzed on your songs</h1>
