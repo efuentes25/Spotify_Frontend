@@ -17,7 +17,7 @@ const AppNav = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/play">Play</Nav.Link>
-          <Nav.Link href="#other">Other</Nav.Link>
+          <Nav.Link href="/albumSearch">Album Search</Nav.Link>
           <Nav.Link href="#other">Other</Nav.Link>
         </Nav>
         <Nav>
