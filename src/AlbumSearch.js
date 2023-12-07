@@ -8,7 +8,7 @@ const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
 const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
 
-function MusicApp(){
+function AlbumSearch(){
   //const [searchResults, setSearchResults] = useState([]);
   //const [isPlaylistVisible, setPlaylistVisibility] = useState(false);
 
@@ -75,18 +75,18 @@ function MusicApp(){
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="text-center p-4"> {/* Center the content */}
         <h1>Music Album Search</h1>
         <Container className="d-flex justify-content-center align-items-center">
           <Row>
             <Col>
-              <Card bg="dark" text="white" className="p-4" style={{ width: '100vh'}}>
+              <Card bg="dark" text="white" className="p-4" style={{ width: '100vh' }}>
                 <Card.Body>
                   <Card.Title>Search</Card.Title>
                   <Form>
                     <Form.Group controlId="formSearch">
-                      <Form.Control 
+                      <Form.Control
                         type="input"
                         placeholder="Enter Artist Name Here"
                         className="border"
@@ -101,29 +101,25 @@ function MusicApp(){
               </Card>
             </Col>
           </Row>
-      </Container>
+        </Container>
 
-      <Container>
-        <Row className="mx-2 row row-cols-4">
-          <Col>
-            {albums.map((album, i) => {
-              console.log(album)
-              return(
-                <Card bg="dark" text="white" className="p-4" style={{ width: '100%' }}>
-                  <Card.Img src = {album.images[0].url} />
-                  <Card.Body className="d-flex flex-column align-items-center">
+        <Container>
+          <Row className="mx-2 row row-cols-4">
+            {albums.map((album, i) => (
+              <Col key={i} className="mb-4 d-flex align-items-center justify-content-center">
+                <Card bg="dark" text="white" className="p-2" style={{ width: '300px', borderRadius: '10px', textAlign: 'center' }}>
+                  <Card.Img src={album.images[0].url} className="album-image" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
+                  <Card.Body>
                     <Card.Title>{album.name}</Card.Title>
                   </Card.Body>
                 </Card>
-              )
-            })}
-            
-          </Col>
-        </Row>
-      </Container>
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </div>
     </div>
   );
-};
+}
 
-export default MusicApp;
+export default AlbumSearch;

@@ -18,7 +18,7 @@ const AppNav = () => {
         <Nav className="mr-auto">
           <Nav.Link href="/play">Play</Nav.Link>
           <Nav.Link href="/albumSearch">Album Search</Nav.Link>
-          <Nav.Link href="#other">Other</Nav.Link>
+          <Nav.Link href="/create">Create</Nav.Link>
         </Nav>
         <Nav>
           <Dropdown show={showDropdown} onToggle={toggleDropdown} >

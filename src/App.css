@@ -107,3 +107,14 @@ input:focus {
   background-color: #13c313;
   color: #ffffff;
 }
+
+#backgroundQuiz {
+  background-image: url("https://cdn.create.vista.com/api/media/small/347767565/stock-photo-top-view-paper-cut-notes-music-book-acoustic-guitar-white");
+  background-size: cover;
+  min-height: 100vh;
+};
+
+.album-image {
+  width: 300px;
+  height: auto;
+}
