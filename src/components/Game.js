@@ -83,6 +83,7 @@ function Game() {
     history.push('/play');
   };
 
+  const totalQuestions = mockData[selectedOption].length;
 
   return (
     <div id='backgroundQuiz'>
@@ -93,7 +94,7 @@ function Game() {
             <Col md={8} className="text-center">
               <div className="mt-3">
                 <h3>Quiz Completed!</h3>
-                <h1>Your final score is: {score}/{mockData[selectedOption].length}</h1>
+                <h1>Your final score is: {score}/{totalQuestions}</h1>
                 <Button variant="primary" onClick={handleBackToPlay}>
                   Back to Play
                 </Button>
@@ -105,7 +106,7 @@ function Game() {
             <Col md={8}>
               <div className="text-center">
                 {currentQuestion.imageUrl && (
-                  <Image src={currentQuestion.imageUrl} alt={`Image for ${currentQuestion.title}`} fluid style={{height: '300px'}}/>
+                  <Image src={currentQuestion.imageUrl} alt={`Image for ${currentQuestion.title}`} fluid style={{ height: '300px' }} />
                 )}
                 <p className='pt-1'>{selectedOption === 'artist' ? `Who sings the song "${currentQuestion.song}"?` : `Which song is this?`}</p>
                 <ListGroup>
@@ -133,7 +134,7 @@ function Game() {
                   ))}
                 </ListGroup>
                 <ProgressBar
-                  now={(currentQuestionIndex / mockData[selectedOption].length) * 100}
+                  now={(currentQuestionIndex / totalQuestions) * 100}
                   className="mt-3"
                   style={{ backgroundColor: 'white' }}
                 />
@@ -151,6 +152,11 @@ function Game() {
                     </Button>
                   </div>
                 )}
+
+                {/* Display Current Question Index */}
+                <div className="mt-3">
+                  <p>Question {currentQuestionIndex + 1}/{totalQuestions}</p>
+                </div>
               </div>
             </Col>
           </Row>

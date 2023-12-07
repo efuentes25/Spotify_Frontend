@@ -113,3 +113,8 @@ input:focus {
   background-size: cover;
   min-height: 100vh;
 };
+
+.album-image {
+  width: 300px;
+  height: auto;
+}
