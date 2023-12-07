@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from './components/SearchBar';
-import PlaylistDisplay from './components/PlaylistDisplay';
 import Navbar from './components/Nav'
 import { Container, Row, Col, Card, Form, Button, InputGroup, FormControl } from 'react-bootstrap';
 import App from './App';
+
 
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
 const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;

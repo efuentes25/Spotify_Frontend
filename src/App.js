@@ -6,6 +6,7 @@ import MusicApp from './MusicApp';
 import Login from './components/Login'
 import Play from './components/Play'
 import Game from './components/Game'
+import AlbumSearch from './AlbumSearch'
 import { useEffect, useState } from 'react';
 
 const base_uri = 'http://localhost:3000';
@@ -60,6 +61,7 @@ function App() {
 					<Route path="/login" component={Login} />
 					<Route path="/play" component={Play} />
 					<Route path="/game" component={Game} />
+					<Route path="/albumSearch" component={AlbumSearch} />
 					<Route render={ () => <h1>Page not found</h1>} />
 					</Switch>
 				</div>
