@@ -6,9 +6,11 @@ import MusicApp from './MusicApp';
 import Login from './components/Login'
 import Play from './components/Play'
 import Game from './components/Game'
+import { useEffect, useState } from 'react';
 
 const base_uri = 'http://localhost:3000';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
+const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
 const redirectUrl = `https://github.com/TheWalkingShane/backend_spotify/issues`;
 const scope = 'user-read-private user-read-email';
 
@@ -49,7 +51,6 @@ export async function redirectSpotifyOAuth() {
 }
 
 function App() {
-
 	return (
 		<div>
 			<BrowserRouter>
