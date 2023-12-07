@@ -50,7 +50,7 @@ function Login() {
   };
 
   const loginToSpotify = () => {
-    redirectSpotifyOAuth();
+	  redirectSpotifyOAuth();
     console.log('Redirect to Spotify');
   };
 
