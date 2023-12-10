@@ -13,7 +13,7 @@ const base_uri = 'http://localhost:3000/';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
 const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
 const redirectUrl = base_uri;
-const scope = 'user-read-private user-read-email';
+const scope = 'user-read-private user-read-email user-modify-playback-state';
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -50,6 +50,22 @@ if (code) {
 
 	const updatedUrl = url.search ? url.href : url.href.replace('?', '');
 	window.history.replaceState({}, document.title, updatedUrl);
+}
+
+export async function refreshSpotifyCredentials() {
+	const response = await fetch(tokenEndpoint, {
+		'method': 'POST',
+		'headers': {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: new URLSearchParams({
+			client_id: spotify_api_client,
+			grant_type: 'refresh_token',
+			refresh_token: userTokens.refresh_token
+		}),
+	});
+
+	return await response.json();
 }
 
 export async function redirectSpotifyOAuth() {
