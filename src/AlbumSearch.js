@@ -31,17 +31,7 @@ function AlbumSearch(){
 
 	useEffect(() => {
 		// access API Token
-		var authParameters = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: 'grant_type=client_credentials&client_id=' + spotify_api_client + '&client_secret=' + spotify_api_key
-		}
-		fetch(tokenEndpoint, authParameters)
-      .then(result => result.json())
-      .then(data => setAccessToken(data.access_token)) // console.log(data) 
-
+		setAccessToken(window.localStorage.getItem('access_token'));
 	}, [])
 
   async function search(){
