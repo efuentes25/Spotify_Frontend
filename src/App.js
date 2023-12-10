@@ -17,6 +17,7 @@ const scope = 'user-read-private user-read-email user-modify-playback-state';
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
+const userDataEndpoint = "https://api.spotify.com/v1/me";
 
 const userTokens = {
 	get access_token() { return localStorage.getItem('access_token') || null; },
@@ -63,6 +64,15 @@ export async function refreshSpotifyCredentials() {
 			grant_type: 'refresh_token',
 			refresh_token: userTokens.refresh_token
 		}),
+	});
+
+	return await response.json();
+}
+
+export async function fetchSpotifyUserData() {
+	const response = await fetch(userDataEndpoint, {
+		method: 'GET',
+		headers: { 'Authorization': 'Bearer ' + userTokens.access_token },
 	});
 
 	return await response.json();
