@@ -1,7 +1,5 @@
 import './App.css';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import PlaylistDisplay from './components/PlaylistDisplay';
-import SearchBar from './components/SearchBar';
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import MusicApp from './MusicApp';
 import Login from './components/Login'
 import Play from './components/Play'
@@ -13,7 +11,7 @@ export const UserContext = createContext(false);
 
 const base_uri = 'http://localhost:3000/';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
-const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
+// const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
 const redirectUrl = base_uri;
 const scope = 'user-read-private user-read-email user-modify-playback-state';
 
@@ -137,7 +135,7 @@ function App() {
 		if (window.localStorage.getItem('access_token') !== null) {
 			setAuthenticated(true);
 		}
-	});
+	}, []);
 
 	return (
 		<div>

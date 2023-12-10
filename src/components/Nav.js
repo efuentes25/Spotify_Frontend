@@ -6,7 +6,7 @@ import { UserContext } from '../App';
 
 const AppNav = () => {
 	const [showDropdown, setShowDropdown] = useState(false);
-	const { authenticated, setAuthenticated } = useContext(UserContext);
+	const { authenticated } = useContext(UserContext);
 
 	const toggleDropdown = () => {
 		setShowDropdown(!showDropdown);
