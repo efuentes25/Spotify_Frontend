@@ -7,7 +7,9 @@ import Login from './components/Login'
 import Play from './components/Play'
 import Game from './components/Game'
 import AlbumSearch from './AlbumSearch'
-import { useEffect, useState } from 'react';
+import { useState, createContext, useEffect } from 'react';
+
+export const UserContext = createContext(false);
 
 const base_uri = 'http://localhost:3000/';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
@@ -129,19 +131,29 @@ async function accessSpotifyCredentials(code) {
 }
 
 function App() {
+	const [authenticated, setAuthenticated] = useState(false);
+
+	useEffect(() => {
+		if (window.localStorage.getItem('access_token') !== null) {
+			setAuthenticated(true);
+		}
+	});
+
 	return (
 		<div>
 			<BrowserRouter>
-				<div>
-					<Switch>
-						<Route exact path="/" component={MusicApp} />
-						<Route path="/login" component={Login} />
-						<Route path="/play" component={Play} />
-						<Route path="/game" component={Game} />
-						<Route path="/albumSearch" component={AlbumSearch} />
-						<Route path="/create" component={Play} />
-						<Route render={() => <h1>Page not found</h1>} />
-					</Switch>
+				<div className="app">
+					<UserContext.Provider value={{ authenticated: authenticated, setAuthenticated: setAuthenticated }}>
+						<Switch>
+							<Route exact path="/" component={MusicApp} />
+							<Route path="/login" component={Login} />
+							<Route path="/play" component={Play} />
+							<Route path="/game" component={Game} />
+							<Route path="/albumSearch" component={AlbumSearch} />
+							<Route path="/create" component={Play} />
+							<Route render={() => <h1>Page not found</h1>} />
+						</Switch>
+					</UserContext.Provider>
 				</div>
 			</BrowserRouter>
 		</div>
