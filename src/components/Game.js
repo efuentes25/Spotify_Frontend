@@ -102,6 +102,11 @@ function Game() {
       const currentQuestion = trackData[selectedOption][currentQuestionIndex];
       // Shuffle choices when the question changes
       setShuffledChoices(shuffleArray(trackData[selectedOption], currentQuestion.title));
+      // resets music
+      if (videoRef.current) {
+        videoRef.current.src = currentQuestion.preview;
+        videoRef.current.load();
+      }
     }
   }, [currentQuestionIndex, selectedOption, isLoaded]);
 
@@ -109,11 +114,6 @@ function Game() {
 
   if(isLoaded) {
     currentQuestion = trackData[selectedOption][currentQuestionIndex];
-    // resets music
-    if (videoRef.current) {
-      videoRef.current.src = currentQuestion.preview;
-      videoRef.current.load();
-    }
   }
 
   const handleAnswer = (optionTitle) => {
