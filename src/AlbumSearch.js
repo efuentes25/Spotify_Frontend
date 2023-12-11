@@ -34,6 +34,11 @@ function AlbumSearch(){
 		setAccessToken(window.localStorage.getItem('access_token'));
 	}, [])
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    search();
+  };
+
   async function search(){
     console.log("Search for " + searchQuery);
     // Get a request for the artist id
@@ -74,7 +79,7 @@ function AlbumSearch(){
               <Card bg="dark" text="white" className="p-4" style={{ width: '100vh' }}>
                 <Card.Body>
                   <Card.Title>Search</Card.Title>
-                  <Form>
+                  <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formSearch">
                       <Form.Control
                         type="input"
