@@ -128,15 +128,13 @@ function AlbumSearch(){
           <Container className='bg-dark py-5 text-light' style={{borderRadius: '20px'}}>
             <Row className="justify-content-center">
               <Col md={8} className="text-center">
-                <h1>Connect to Spotify to play</h1>
+                <h1>Connect to Spotify to search for albums</h1>
               </Col>
             </Row>
             <Row className="justify-content-center mt-3">
               <Col md={8} className="text-center">
                 <p>
-                  Discover how well you know your Spotify saved songs. 
-                  The quiz will test your knowledge of artists, song names, 
-                  and more from your personal Spotify library.
+                  Discover all your favorite artist albums from the Spotify library.
                 </p>
               </Col>
             </Row>
