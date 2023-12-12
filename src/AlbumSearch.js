@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from './components/Nav'
 import { Container, Row, Col, Card, Form, Button, InputGroup, FormControl } from 'react-bootstrap';
 import App from './App';
-import { redirectSpotifyOAuth } from './App';
+import { redirectSpotifyOAuth, UserContext } from './App';
 
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
 const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
@@ -27,9 +27,9 @@ function AlbumSearch(){
 
   const [searchQuery, setSearchQuery] = useState('');
   const [accessToken, setAccessToken] = useState("");
+  const { authenticated, setAuthenticated} = useContext(UserContext);
   const [albums, setAlbums] = useState([]);
-  const isLoginSpotify = accessToken !== null;
-
+  //const isLoginSpotify = accessToken !== null;
 
 	useEffect(() => {
 		// access API Token
@@ -43,6 +43,7 @@ function AlbumSearch(){
 
   const loginToSpotify = () => {
     redirectSpotifyOAuth();
+    setAuthenticated(false);
   }
 
   async function search(){
@@ -78,7 +79,7 @@ function AlbumSearch(){
     <div>
       <Navbar />
       <div className="text-center p-4"> {/* Center the content */}
-        {isLoginSpotify ? (
+        {authenticated ? (
           // Render when user is logged in
           <div>
           <h1>Music Album Search</h1>
