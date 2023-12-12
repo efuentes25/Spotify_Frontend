@@ -136,7 +136,7 @@ function App() {
 			setAuthenticated(true);
 
 			let token_expiration = Date.parse(window.localStorage.getItem('expiry'));
-			if (token_expiration.getTime() <= new Date().getTime()) {
+			if (token_expiration <= new Date().getTime()) {
 				refreshSpotifyCredentials();
 			}
 		}
