@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Nav'
 import { Container, Row, Col, Card, Form, Button, InputGroup, FormControl } from 'react-bootstrap';
 import App from './App';
-
+import { redirectSpotifyOAuth } from './App';
 
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
 const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
@@ -28,6 +28,8 @@ function AlbumSearch(){
   const [searchQuery, setSearchQuery] = useState('');
   const [accessToken, setAccessToken] = useState("");
   const [albums, setAlbums] = useState([]);
+  const isLoginSpotify = accessToken !== null;
+
 
 	useEffect(() => {
 		// access API Token
@@ -38,6 +40,10 @@ function AlbumSearch(){
     e.preventDefault();
     search();
   };
+
+  const loginToSpotify = () => {
+    redirectSpotifyOAuth();
+  }
 
   async function search(){
     console.log("Search for " + searchQuery);
@@ -72,46 +78,81 @@ function AlbumSearch(){
     <div>
       <Navbar />
       <div className="text-center p-4"> {/* Center the content */}
-        <h1>Music Album Search</h1>
-        <Container className="d-flex justify-content-center align-items-center">
-          <Row>
-            <Col>
-              <Card bg="dark" text="white" className="p-4" style={{ width: '100vh' }}>
-                <Card.Body>
-                  <Card.Title>Search</Card.Title>
-                  <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formSearch">
-                      <Form.Control
-                        type="input"
-                        placeholder="Enter Artist Name Here"
-                        className="border"
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                      />
-                    </Form.Group>
-                    <Button variant="success" onClick={search}>
-                      Search
-                    </Button>
-                  </Form>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-
-        <Container>
-          <Row className="mx-2 row row-cols-4">
-            {albums.map((album, i) => (
-              <Col key={i} className="mb-4 d-flex align-items-center justify-content-center">
-                <Card bg="dark" text="white" className="p-2" style={{ width: '300px', borderRadius: '10px', textAlign: 'center' }}>
-                  <Card.Img src={album.images[0].url} className="album-image" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
+        {isLoginSpotify ? (
+          // Render when user is logged in
+          <div>
+          <h1>Music Album Search</h1>
+          <Container className="d-flex justify-content-center align-items-center">
+            <Row>
+              <Col>
+                <Card bg="dark" text="white" className="p-4" style={{ width: '100vh' }}>
                   <Card.Body>
-                    <Card.Title>{album.name}</Card.Title>
+                    <Card.Title>Search</Card.Title>
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group controlId="formSearch">
+                        <Form.Control
+                          type="input"
+                          placeholder="Enter Artist Name Here"
+                          className="border"
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                      </Form.Group>
+                      <Button variant="success" onClick={search}>
+                        Search
+                      </Button>
+                    </Form>
                   </Card.Body>
                 </Card>
               </Col>
-            ))}
-          </Row>
-        </Container>
+            </Row>
+          </Container>
+
+          <Container>
+            <Row className="mx-2 row row-cols-4">
+              {albums.map((album, i) => (
+                <Col key={i} className="mb-4 d-flex align-items-center justify-content-center">
+                  <Card bg="dark" text="white" className="p-2" style={{ width: '300px', borderRadius: '10px', textAlign: 'center' }}>
+                    <Card.Img src={album.images[0].url} className="album-image" style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
+                    <Card.Body>
+                      <Card.Title>{album.name}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+          </div>
+        ) : (
+          // Render when user is not logged in
+          <Container className='bg-dark py-5 text-light' style={{borderRadius: '20px'}}>
+            <Row className="justify-content-center">
+              <Col md={8} className="text-center">
+                <h1>Connect to Spotify to play</h1>
+              </Col>
+            </Row>
+            <Row className="justify-content-center mt-3">
+              <Col md={8} className="text-center">
+                <p>
+                  Discover how well you know your Spotify saved songs. 
+                  The quiz will test your knowledge of artists, song names, 
+                  and more from your personal Spotify library.
+                </p>
+              </Col>
+            </Row>
+
+            <Row className="justify-content-center mt-3">
+              <Col md={8} className="text-center">
+                <Button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={loginToSpotify}
+                >
+                  Spotify Login
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        )}
       </div>
     </div>
   );
