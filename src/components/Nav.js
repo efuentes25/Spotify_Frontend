@@ -27,9 +27,8 @@ const AppNav = () => {
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
-					<Nav.Link href="/play">Play</Nav.Link>
+					<Nav.Link href="/play">Play Quiz</Nav.Link>
 					<Nav.Link href="/albumSearch">Album Search</Nav.Link>
-					<Nav.Link href="/create">Create</Nav.Link>
 				</Nav>
 				<Nav>
 					<Dropdown show={showDropdown} onToggle={toggleDropdown} >

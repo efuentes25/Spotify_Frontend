@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Container, Row, Col, Button, ListGroup, Image, ProgressBar } from 'react-bootstrap';
+import { Container, Row, Col, Button, ListGroup, Image, ProgressBar, Modal } from 'react-bootstrap';
 import Navbar from './Nav';
 import { useHistory } from 'react-router-dom';
 
@@ -60,6 +60,20 @@ function Game() {
   const [accessToken, setAccessToken] = useState("");
   const [isLoaded, setLoaded] = useState(false);
   const videoRef = useRef(null);
+  const [isImageBlurred, setIsImageBlurred] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
 
   useEffect(() => {
     if(isLoggedIn === "false") {
@@ -159,6 +173,7 @@ function Game() {
     setIsCorrect(correct);
     setScore(score + (correct ? 1 : 0));
     setAnswerConfirmed(true);
+    setIsImageBlurred(false);
   };
 
   const handleNext = () => {
@@ -167,6 +182,7 @@ function Game() {
       setSelectedAnswer(null);
       setIsCorrect(null);
       setAnswerConfirmed(false);
+      handleImageClick();
     } else {
       // All questions have been completed
       setQuizCompleted(true);
@@ -176,6 +192,28 @@ function Game() {
   const handleBackToPlay = () => {
     history.push('/play');
   };
+
+  const handleImageClick = () => {
+    if (!answerConfirmed && isImageBlurred) {
+      handleShowModal();
+    } else {
+      setIsImageBlurred(!isImageBlurred);
+    }
+  };
+
+  const handleConfirmReveal = () => {
+    // Close the modal
+    handleCloseModal();
+  
+    if (!answerConfirmed) {
+      setIsImageBlurred(!isImageBlurred);
+      setAnswerConfirmed(true);
+      const correctAnswer = currentQuestion.title;
+      setSelectedAnswer(correctAnswer);
+      setIsCorrect(false);
+    }
+  };
+  
 
   const totalQuestions = trackData[selectedOption].length;
 
@@ -201,7 +239,24 @@ function Game() {
               <Col md={8}>
                 <div className="text-center">
                   {currentQuestion.imageUrl && (
-                    <Image src={currentQuestion.imageUrl} alt={`Image for ${currentQuestion.title}`} fluid style={{ height: '300px' }} />
+                    <div
+                      style={{ position: 'relative' }}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <Image
+                        src={currentQuestion.imageUrl}
+                        alt={`Image for ${currentQuestion.title}`}
+                        fluid
+                        style={{ height: '300px', filter: isImageBlurred ? 'blur(5px)' : 'none', cursor: 'pointer' }}
+                        onClick={handleImageClick}
+                      />
+                      {hovered && (
+                        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white', padding: '10px' }}>
+                          Reveal Image
+                        </div>
+                      )}
+                    </div>
                   )}
                   {currentQuestion.preview && isLoggedIn === 'true' ? (
                     <video ref={videoRef} controls autoPlay name='media' allowFullScreen={false} controlsList="nodownload" style={{ height: '75px', width: '100%'}}>
@@ -211,7 +266,7 @@ function Game() {
                     <iframe
                       width="300"
                       height="240"
-                      src={'https://www.youtube.com/embed/nlR0MkrRklg?si=JHpKAybWlz2D6EsI'}
+                      src={currentQuestion.preview}
                       title="YouTube video player"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
@@ -273,6 +328,24 @@ function Game() {
             </Row>
           )}
         </Container>
+
+        <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Reveal</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to reveal the image? Its going to count as a incorrect question.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleConfirmReveal}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       </div> 
     ) : (
       <p>Loading...</p>

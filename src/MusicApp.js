@@ -89,20 +89,19 @@ const MusicApp = () => {
             {/* Text container on the left */}
             <div style={textContainerStyle}>
               <div className="card-body">
-                <h2 className="card-title">Create Your Own Quiz</h2>
+                <h2 className="card-title">Search Albums</h2>
                 <p className="card-text">
-                  Want to create a custom quiz? With our app, you can easily
-                  generate quizzes based on your favorite artists, genres, or
-                  specific songs. Start creating and sharing your quizzes today!
+                  Want to search up your favorite albums? With our app, you can easily
+                  find albums based on your favorite artists and genres.
                 </p>
-                <button className="btn btn-primary" onClick={() => {history.push('/create')}}>Create Now</button>
+                <button className="btn btn-primary" onClick={() => {history.push('/albumSearch')}}>Search</button>
               </div>
             </div>
 
             {/* Image container on the right */}
             <div style={imageContainerStyle}>
               <img
-                src={require('./Images/Screenshot 2023-12-06 at 8.22.55 PM.png')}
+                src={require('./Images/searchImage.png')}
                 alt=''
                 style={{ width: '100%', height: '100%' }}
               />
