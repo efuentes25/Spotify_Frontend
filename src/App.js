@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import MusicApp from './MusicApp';
 import Login from './components/Login'
 import Play from './components/Play'
@@ -9,7 +9,7 @@ import { useState, createContext, useEffect } from 'react';
 
 export const UserContext = createContext(false);
 
-const base_uri = 'http://localhost:3000/';
+const base_uri = 'http://cst438-Publi-kAQ647shr9uw-1862972757.us-west-2.elb.amazonaws.com';
 const spotify_api_client = process.env.REACT_APP_SPOTIFY_API_CLIENT_ID;
 // const spotify_api_key = process.env.REACT_APP_SPOTIFY_API_CLIENT_KEY;
 const redirectUrl = base_uri;
