@@ -134,9 +134,9 @@ function AlbumSearch(){
             <Row className="justify-content-center mt-3">
               <Col md={8} className="text-center">
                 <p>
-                  Discover how well you know your Spotify saved songs. 
-                  The quiz will test your knowledge of artists, song names, 
-                  and more from your personal Spotify library.
+                  Connect your spotify account to look up albums 
+                  from your favorite artist or from your favorite
+                  genre.
                 </p>
               </Col>
             </Row>

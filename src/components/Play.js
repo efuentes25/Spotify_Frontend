@@ -4,6 +4,7 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { redirectSpotifyOAuth } from '../App';
 
+
 function Play() {
   const history = useHistory();
   const [selectedOption, setSelectedOption] = useState('song');
@@ -11,8 +12,11 @@ function Play() {
 
   const startGame = () => {
     // Passes the choice as a param in the url
-    if (selectedOption) {
-      history.push(`/game?option=${selectedOption}`);
+    if (selectedOption && isLoginSpotify) {
+      history.push(`/game?option=${selectedOption}&login=true`);
+    } else {
+      // not logged in quiz
+      history.push(`/game?option=${selectedOption}&login=false`);
     }
   };
 
@@ -28,12 +32,17 @@ function Play() {
       <Navbar />
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '90vh'}}>
-        {isLoginSpotify ? (
-          // Render when user is logged in
           <Container className='bg-dark py-5 text-light' style={{borderRadius: '20px'}}>
             <Row className="justify-content-center">
               <Col md={8} className="text-center">
-                <h1>Get quizzed on your songs</h1>
+                {isLoginSpotify ? (
+                  <h1>Get quizzed on your saved songs</h1>
+                ) : (
+                  <h3>
+                    Get quizzed on USA's Top 10 Songs of the month
+                  </h3>
+                )}
+                
               </Col>
             </Row>
 
@@ -72,9 +81,10 @@ function Play() {
               </Col>
             </Row>
           </Container>
-        ) : (
-          // Render when user is not logged in
-          <Container className='bg-dark py-5 text-light' style={{borderRadius: '20px'}}>
+        {!isLoginSpotify ? (
+          <div>
+            <h3 className='text-center mt-2 text-dark'>or</h3>
+          <Container className='bg-dark py-3 text-light mt-0' style={{borderRadius: '20px'}}>
             <Row className="justify-content-center">
               <Col md={8} className="text-center">
                 <h1>Connect to Spotify to play</h1>
@@ -102,6 +112,9 @@ function Play() {
               </Col>
             </Row>
           </Container>
+          </div>
+        ) : (
+          <></>
         )}
       </div>
     </div>
