@@ -66,7 +66,7 @@ export async function refreshSpotifyCredentials() {
 		}),
 	});
 
-	return await response.json();
+	userTokens.save(response.json());
 }
 
 export async function fetchSpotifyUserData() {
@@ -134,6 +134,11 @@ function App() {
 	useEffect(() => {
 		if (window.localStorage.getItem('access_token') !== null) {
 			setAuthenticated(true);
+
+			let token_expiration = Date.parse(window.localStorage.getItem('expiry'));
+			if (token_expiration <= new Date().getTime()) {
+				refreshSpotifyCredentials();
+			}
 		}
 	}, []);
 
